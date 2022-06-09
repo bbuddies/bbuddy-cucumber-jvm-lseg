@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bbuddytest?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    password: dbs3cr3t
+    testWhileIdle: true
+    username: nerd
+    validationQuery: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        default_schema: bbuddytest
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+
+api:
+  url: http://localhost:4000
+
+browser: chrome
