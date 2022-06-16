@@ -20,12 +20,15 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker
     ports:
-      - 8080:8080
       - 4000:4000
     restart: on-failure
     depends_on:
       mysql:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000/health"]
+      timeout: 10s
+      retries: 10
   frontend:
     image: zbcjackson/bbuddy-react
     ports:
