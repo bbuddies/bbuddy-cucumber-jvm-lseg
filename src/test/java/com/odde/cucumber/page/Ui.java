@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.List;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,5 +48,15 @@ public class Ui {
 
     public void assertHaveText(String text) {
         assertThat(findElementByText(text)).isNotNull();
+    }
+
+    public void assertHaveContent(String text) {
+        List<WebElement> textTargets = driver.findElements(By.xpath(String.format("//*[contains(text(),'%s')]", text)));
+        assertThat(textTargets.size() > 0);
+    }
+
+    public void assertHaveDuplicatedContent(String text) {
+        List<WebElement> textTargets = driver.findElements(By.xpath(String.format("//*[contains(text(),'%s')]", text)));
+        assertThat(textTargets.size() > 1);
     }
 }
