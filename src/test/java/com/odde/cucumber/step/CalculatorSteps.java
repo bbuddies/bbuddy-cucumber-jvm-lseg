@@ -25,4 +25,8 @@ public class CalculatorSteps {
     public void subtract(int a, int b) {
         calculator.subtract(b, a);
     }
+
+    @When("multiply {int} and {int}")
+    public void multiply(int a, int b) { calculator.multiply(a, b);
+    }
 }
